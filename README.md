@@ -1,3 +1,3 @@
 # Phaser Shoot 'em up
 
-Some Derp
+Some cat and Derp
