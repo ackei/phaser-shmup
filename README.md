@@ -1,1 +1,1 @@
-# phaser-shmup
+# Phaser Shoot 'em up
