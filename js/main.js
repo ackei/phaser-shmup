@@ -4,12 +4,15 @@ window.onload = function() {
 		var platforms;
 		var player;
 		var cursors;
+		var explosions;
+		var btnFire;
 
         function preload () {
 
-            game.load.image('logo', '../img/phaser.png');
-    		game.load.image('ship', '../img/chapel-fighter.png');
-
+			var imgdir = "../img/";
+            game.load.image('logo', imgdir+'phaser.png');
+    		game.load.image('ship', imgdir+'chapel-fighter.png');
+			game.load.spritesheet('died', imgdir+'explode.png', 128, 128);
         }
 
         function create () {
@@ -30,12 +33,17 @@ window.onload = function() {
 			//player.body.gravity.y = 300;
     
 			cursors = game.input.keyboard.createCursorKeys();
-
+			btnFire = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
     		//  We need to enable physics on the player
     		game.physics.arcade.enable(player);
-
+    
+			//  An explosion pool
+    explosions = game.add.group();
+    explosions.createMultiple(30, 'died');
+    explosions.forEach(setupInvader, this);
         }
+		
 		
 		function update() {
 
@@ -63,6 +71,50 @@ window.onload = function() {
         		//  Move to the right
         		player.body.velocity.y = 150;
 			}
+
+			if(btnFire.isDown) enemyHitsPlayer(player, null);
 		}
 
+		function enemyHitsPlayer (player,bullet) {
+    
+    		//bullet.kill();
+
+    		//live = lives.getFirstAlive();
+
+			/*
+    		if (live)
+    		{
+        		live.kill();
+    		}
+			*/
+
+    		//  And create an explosion :)
+    		var explosion = explosions.getFirstExists(false);
+    		explosion.reset(player.body.x, player.body.y);
+    		explosion.play('died', 30, false, true);
+
+			//player.animations.play('died');
+    		// When the player dies
+    		/*
+			if (lives.countLiving() < 1)
+    		{
+        		player.kill();
+        		enemyBullets.callAll('kill');
+
+        		stateText.text=" GAME OVER \n Click to restart";
+        		stateText.visible = true;
+
+        		//the "click to restart" handler
+        		game.input.onTap.addOnce(restart,this);
+    		}
+			*/
+}
+
+function setupInvader (invader) {
+
+    invader.anchor.x = 0.5;
+    invader.anchor.y = 0.5;
+    invader.animations.add('died');
+
+}
     };
