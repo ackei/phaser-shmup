@@ -3,15 +3,50 @@
     <head>
         <meta charset="UTF-8" />
         <title>Chapel Fighter</title>
-        
-		<!-- <script src="//cdn.jsdelivr.net/phaser/2.2.2/phaser.min.js"></script> -->
-		<script src="js/phaser.min.js"></script>
-
     </head>
     <body>
 
-    <script src="js/main.js" type="text/javascript">
-    
+	<!-- <script src="//cdn.jsdelivr.net/phaser/2.2.2/phaser.min.js"></script> -->
+	<script src="js/phaser.min.js"></script>
+
+    <script src="js/explosion.js" type="text/javascript"></script>
+    <script src="js/create.js" type="text/javascript"></script>
+    <script src="js/game.js" type="text/javascript"></script>
+
+	<script type="text/javascript">
+
+var game;
+var platforms;
+var player;
+var cursors;
+var explosions;
+var btnFire;
+var inGame;
+
+window.onload = function() {
+
+        game = new Phaser.Game(600, 800, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+		inGame = false;
+
+        function preload () {
+
+			var imgdir = "img/";
+            game.load.image('logo', imgdir+'phaser.png');
+    		game.load.image('ship', imgdir+'chapel-fighter.png');
+			game.load.spritesheet('died', imgdir+'explode.png', 128, 128);
+        }
+
+        function create () {
+			setup();
+        }
+		
+		
+		function update() {
+			play();
+		}
+
+};
+
 	</script>
 	</body>
 </html>
