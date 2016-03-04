@@ -1,3 +1,3 @@
 # Phaser Shoot 'em up
 
-Some cat and Derp
+Currently basic template
