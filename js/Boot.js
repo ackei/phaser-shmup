@@ -37,6 +37,10 @@ BasicGame.Boot.prototype = {
         this.load.image('preloaderBackground', 'images/preloader_background.jpg');
         this.load.image('preloaderBar', 'images/preloadr_bar.png');
 
+		var imgdir = "img/";
+            this.game.load.image('logo', imgdir+'phaser.png');
+    		this.game.load.image('ship', imgdir+'chapel-fighter.png');
+			this.game.load.spritesheet('died', imgdir+'explode.png', 128, 128);
     },
 
     create: function () {
