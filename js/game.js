@@ -24,6 +24,4 @@ function play ()
 		//  Move to the right
 		player.body.velocity.y = 150;
 	}
-
-	if(btnFire.isDown) enemyHitsPlayer(player, null);
 }

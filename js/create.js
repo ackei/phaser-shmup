@@ -1,6 +1,6 @@
 function setup()
 {
-	var size = 32;
+	var size = 64;
 
 	//  We're going to be using physics, so enable the Arcade Physics system
 	game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -19,6 +19,8 @@ function setup()
 
 	cursors = game.input.keyboard.createCursorKeys();
 	btnFire = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+	//var kaboom = boom(player, null);
+	btnFire.onDown.add(boom);
 
 	//  We need to enable physics on the player
 	game.physics.arcade.enable(player);
