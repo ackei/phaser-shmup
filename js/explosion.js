@@ -1,8 +1,8 @@
-/*
+
 function boom (){
-	enemyHitsPlayer(player, null);
+	enemyHitsPlayer(player, this.game.world.centerX, this.game.world.height);
 }
-*/
+
 	function enemyHitsPlayer (player,x,y) {
     		//  And create an explosion :)
 			player.kill();

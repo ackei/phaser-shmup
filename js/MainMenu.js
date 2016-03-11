@@ -17,8 +17,8 @@ BasicGame.MainMenu.prototype = {
 		this.music = this.add.audio('titleMusic');
 		this.music.play();
 
-		this.add.sprite(0, 0, 'titlepage');
-
+		var thebg = this.add.sprite(0, 0, 'titlepage');
+		thebg.scale.setTo(thebg.width/this.game.width, thebg.width/this.game.width);
 		this.playButton = this.add.button(400, 600, 'playButton', this.startGame, this, 'over', 'out', 'down');
 
 	},

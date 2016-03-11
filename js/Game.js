@@ -37,6 +37,18 @@ BasicGame.Game.prototype = {
 
     create: function () {
 
+		this.background = this.add.tileSprite(0, 0, this.game.width, this.game.height, 'planetbg');
+		//this.background.scale.setTo(this.background.width/this.game.width, this.background.width/this.game.width);
+		this.background.scale.setTo(2,2);
+        
+		var star1 = this.add.tileSprite(0, 0, this.game.width, this.game.height, 'stars1');
+		var star2 = this.add.tileSprite(0, 0, this.game.width, this.game.height, 'stars2');
+		
+		star1.scale.setTo(2,2);
+		star2.scale.setTo(2,2);
+
+		star1.autoScroll(0, 200);
+        star2.autoScroll(0, 50);
         //  Honestly, just about anything could go here. It's YOUR game after all. Eat your heart out!
 		//setup();
 		var size = 64;
@@ -45,8 +57,8 @@ BasicGame.Game.prototype = {
 	this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
 	//  A simple background for our game
-	var logo = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY, 'logo');
-	logo.anchor.setTo(0.5, 0.5);
+	//var logo = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY, 'logo');
+	//logo.anchor.setTo(0.5, 0.5);
 
 	// The player and its settings
 	player = this.game.add.sprite(this.game.world.centerX, this.game.world.height - size/2, 'ship');
@@ -59,7 +71,7 @@ BasicGame.Game.prototype = {
 	cursors = this.game.input.keyboard.createCursorKeys();
 	btnFire = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 	//var kaboom = boom(player, null);
-	btnFire.onDown.add(this.boom,this);
+	btnFire.onDown.add(boom,this);
 
 	//  We need to enable physics on the player
 	this.game.physics.arcade.enable(player);
@@ -109,7 +121,7 @@ BasicGame.Game.prototype = {
         //  Then let's go back to the main menu.
         this.state.start('MainMenu');
 
-    },
+    }/*,
 
 
 	boom: function (){

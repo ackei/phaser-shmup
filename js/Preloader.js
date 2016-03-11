@@ -14,7 +14,8 @@ BasicGame.Preloader.prototype = {
 
 		//	These are the assets we loaded in Boot.js
 		//	A nice sparkly background and a loading progress bar
-		this.background = this.add.sprite(0, 0, 'preloaderBackground');
+		var thebg = this.background = this.add.sprite(0, 0, 'preloaderBackground');
+		thebg.scale.setTo(thebg.width/this.game.width, thebg.height/this.game.width);
 		this.preloadBar = this.add.sprite(300, 400, 'preloaderBar');
 
 		//	This sets the preloadBar sprite as a loader sprite.
@@ -33,6 +34,10 @@ BasicGame.Preloader.prototype = {
 		this.game.load.image('logo', imgdir+'phaser.png');
     	this.game.load.image('ship', imgdir+'chapel-fighter.png');
 		this.game.load.spritesheet('died', imgdir+'explode.png', 128, 128);
+		//this.game.load.image('vscrollbg', imgdir+'starsbg2.jpg');
+		this.game.load.image('planetbg', imgdir+'planet.jpg');
+		this.game.load.image('stars1', imgdir+'stars1.png');
+		this.game.load.image('stars2', imgdir+'stars2.png');
 
 	},
 
