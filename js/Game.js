@@ -42,30 +42,30 @@ BasicGame.Game.prototype = {
 		var size = 64;
 
 	//  We're going to be using physics, so enable the Arcade Physics system
-	game.physics.startSystem(Phaser.Physics.ARCADE);
+	this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
 	//  A simple background for our game
-	var logo = game.add.sprite(game.world.centerX, game.world.centerY, 'logo');
+	var logo = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY, 'logo');
 	logo.anchor.setTo(0.5, 0.5);
 
 	// The player and its settings
-	player = game.add.sprite(game.world.centerX, game.world.height - size/2, 'ship');
+	player = this.game.add.sprite(this.game.world.centerX, this.game.world.height - size/2, 'ship');
 	player.scale.setTo(size/player.width, size/player.height);
 	player.anchor.setTo(0.5, 0.5);
 
 	//player.body.collideWorldBounds = true;
 	//player.body.gravity.y = 300;
 
-	cursors = game.input.keyboard.createCursorKeys();
-	btnFire = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+	cursors = this.game.input.keyboard.createCursorKeys();
+	btnFire = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 	//var kaboom = boom(player, null);
-	btnFire.onDown.add(boom);
+	btnFire.onDown.add(this.boom,this);
 
 	//  We need to enable physics on the player
-	game.physics.arcade.enable(player);
+	this.game.physics.arcade.enable(player);
 
 	//  An explosion pool
-	explosions = game.add.group();
+	explosions = this.game.add.group();
 	explosions.createMultiple(30, 'died');
 	explosions.forEach(setupInvader, this);
 
@@ -109,14 +109,14 @@ BasicGame.Game.prototype = {
         //  Then let's go back to the main menu.
         this.state.start('MainMenu');
 
-    }
+    },
 
 
 	boom: function (){
-	enemyHitsPlayer(player, null);
-}
+		enemyHitsPlayer(player, this.game.world.centerX, this.game.world.height);
+}/*,
 
-enemyHitsPlayer: function (player,bullet) {
+enemyHitsPlayer: function (player,bullet,game) {
     		//  And create an explosion :)
 			player.kill();
     		var explosion = explosions.getFirstExists(false);
@@ -125,7 +125,7 @@ enemyHitsPlayer: function (player,bullet) {
 			player.position.setTo(game.world.centerX, game.world.height+64);
 			
 			player.revive();
-	}
+	},
 
 setupInvader: function (invader) {
 
@@ -133,6 +133,6 @@ setupInvader: function (invader) {
     invader.anchor.y = 0.5;
     invader.animations.add('died');
 
-}
+}*/
 
 };

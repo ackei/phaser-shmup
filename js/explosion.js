@@ -1,14 +1,15 @@
+/*
 function boom (){
 	enemyHitsPlayer(player, null);
 }
-
-	function enemyHitsPlayer (player,bullet) {
+*/
+	function enemyHitsPlayer (player,x,y) {
     		//  And create an explosion :)
 			player.kill();
     		var explosion = explosions.getFirstExists(false);
     		explosion.reset(player.body.x, player.body.y);
     		explosion.play('died', 30, false, true);
-			player.position.setTo(game.world.centerX, game.world.height+64);
+			player.position.setTo(x, y+64);
 			
 			player.revive();
 	}
@@ -20,3 +21,4 @@ function setupInvader (invader) {
     invader.animations.add('died');
 
 }
+
