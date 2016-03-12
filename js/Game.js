@@ -38,39 +38,40 @@ BasicGame.Game.prototype = {
     create: function () {
 
 		this.background = this.add.tileSprite(0, 0, this.game.width, this.game.height, 'planetbg');
+		 //Leaving this here. We shouldn't be scaling by a hard coded numerical value like below.
 		//this.background.scale.setTo(this.background.width/this.game.width, this.background.width/this.game.width);
 		this.background.scale.setTo(2,2);
         
+		//place the star sprites on the screen
 		var star1 = this.add.tileSprite(0, 0, this.game.width, this.game.height, 'stars1');
 		var star2 = this.add.tileSprite(0, 0, this.game.width, this.game.height, 'stars2');
 		
+		//scale to fit
 		star1.scale.setTo(2,2);
 		star2.scale.setTo(2,2);
 
+		//Make the stars move down a different velocities. This is called "parallax scrolling background."It gives the scrolling background the illusion of depth.
 		star1.autoScroll(0, 200);
         star2.autoScroll(0, 50);
         //  Honestly, just about anything could go here. It's YOUR game after all. Eat your heart out!
-		//setup();
+		
 		var size = 64;
 
 	//  We're going to be using physics, so enable the Arcade Physics system
 	this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
-	//  A simple background for our game
-	//var logo = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY, 'logo');
-	//logo.anchor.setTo(0.5, 0.5);
-
+	
 	// The player and its settings
 	player = this.game.add.sprite(this.game.world.centerX, this.game.world.height - size/2, 'ship');
 	player.scale.setTo(size/player.width, size/player.height);
 	player.anchor.setTo(0.5, 0.5);
 
-	//player.body.collideWorldBounds = true;
-	//player.body.gravity.y = 300;
-
+	
+	//set up inputs
 	cursors = this.game.input.keyboard.createCursorKeys();
 	btnFire = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-	//var kaboom = boom(player, null);
+	
+	//testing death by pressing spacebar. Adding a callback and passing it this as context.
 	btnFire.onDown.add(boom,this);
 
 	//  We need to enable physics on the player
@@ -121,30 +122,6 @@ BasicGame.Game.prototype = {
         //  Then let's go back to the main menu.
         this.state.start('MainMenu');
 
-    }/*,
-
-
-	boom: function (){
-		enemyHitsPlayer(player, this.game.world.centerX, this.game.world.height);
-}/*,
-
-enemyHitsPlayer: function (player,bullet,game) {
-    		//  And create an explosion :)
-			player.kill();
-    		var explosion = explosions.getFirstExists(false);
-    		explosion.reset(player.body.x, player.body.y);
-    		explosion.play('died', 30, false, true);
-			player.position.setTo(game.world.centerX, game.world.height+64);
-			
-			player.revive();
-	},
-
-setupInvader: function (invader) {
-
-    invader.anchor.x = 0.5;
-    invader.anchor.y = 0.5;
-    invader.animations.add('died');
-
-}*/
+    }
 
 };

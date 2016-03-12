@@ -1,3 +1,4 @@
+//this is where the update code would preferably be
 function play ()
 {
 	//  Reset the players velocity (movement)

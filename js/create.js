@@ -1,3 +1,4 @@
+//this would be where the create code would preferably be.
 function setup()
 {
 	var size = 64;
@@ -14,12 +15,9 @@ function setup()
 	player.scale.setTo(size/player.width, size/player.height);
 	player.anchor.setTo(0.5, 0.5);
 
-	//player.body.collideWorldBounds = true;
-	//player.body.gravity.y = 300;
-
 	cursors = game.input.keyboard.createCursorKeys();
 	btnFire = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-	//var kaboom = boom(player, null);
+	
 	btnFire.onDown.add(boom);
 
 	//  We need to enable physics on the player

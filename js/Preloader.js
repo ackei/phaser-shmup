@@ -28,13 +28,13 @@ BasicGame.Preloader.prototype = {
 		this.load.image('titlepage', imgdir+'title.jpg');
 		this.load.atlasJSONHash('playButton', imgdir+'play_button.png', imgdir+'play_button.json');
 		this.load.audio('titleMusic', [snddir+'main_menu.mp3']);
-		//this.load.bitmapFont('caslon', 'fonts/caslon.png', 'fonts/caslon.xml');
 		//	+ lots of other required assets here
 
-		this.game.load.image('logo', imgdir+'phaser.png');
-    	this.game.load.image('ship', imgdir+'chapel-fighter.png');
+		//ship and explosion
+		this.game.load.image('ship', imgdir+'chapel-fighter.png');
 		this.game.load.spritesheet('died', imgdir+'explode.png', 128, 128);
-		//this.game.load.image('vscrollbg', imgdir+'starsbg2.jpg');
+		
+		//background images
 		this.game.load.image('planetbg', imgdir+'planet.jpg');
 		this.game.load.image('stars1', imgdir+'stars1.png');
 		this.game.load.image('stars2', imgdir+'stars2.png');
@@ -62,7 +62,6 @@ BasicGame.Preloader.prototype = {
 		if (this.cache.isSoundDecoded('titleMusic') && this.ready == false)
 		{
 			this.ready = true;
-			//console.log("Before Main Menu");
 			this.state.start('MainMenu');
 		}
 

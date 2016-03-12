@@ -1,3 +1,4 @@
+//copied this from space invaaders example
 
 function boom (){
 	enemyHitsPlayer(player, this.game.world.centerX, this.game.world.height);
