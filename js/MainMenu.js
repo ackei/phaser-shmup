@@ -17,9 +17,12 @@ BasicGame.MainMenu.prototype = {
 		this.music = this.add.audio('titleMusic');
 		this.music.play();
 
-		this.add.sprite(0, 0, 'titlepage');
+		//scaling isn't actually working. This is the title background. In case the image doesn't fit properly, scale it to fit the screen
+		var thebg = this.add.sprite(0, 0, 'titlepage');
+		thebg.scale.setTo(thebg.width/this.game.width, thebg.width/this.game.width);
 
-		this.playButton = this.add.button(400, 600, 'playButton', this.startGame, this, 'buttonOver', 'buttonOut', 'buttonOver');
+		//Add the play button. over, out, and down are defined in the button's JSON file
+		this.playButton = this.add.button(400, 600, 'playButton', this.startGame, this, 'over', 'out', 'down');
 
 	},
 

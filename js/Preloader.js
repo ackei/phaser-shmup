@@ -14,7 +14,8 @@ BasicGame.Preloader.prototype = {
 
 		//	These are the assets we loaded in Boot.js
 		//	A nice sparkly background and a loading progress bar
-		this.background = this.add.sprite(0, 0, 'preloaderBackground');
+		var thebg = this.background = this.add.sprite(0, 0, 'preloaderBackground');
+		thebg.scale.setTo(thebg.width/this.game.width, thebg.height/this.game.width);
 		this.preloadBar = this.add.sprite(300, 400, 'preloaderBar');
 
 		//	This sets the preloadBar sprite as a loader sprite.
@@ -24,11 +25,19 @@ BasicGame.Preloader.prototype = {
 
 		//	Here we load the rest of the assets our game needs.
 		//	As this is just a Project Template I've not provided these assets, swap them for your own.
-		this.load.image('titlepage', 'images/title.jpg');
-		this.load.atlas('playButton', 'images/play_button.png', 'images/play_button.json');
-		this.load.audio('titleMusic', ['audio/main_menu.mp3']);
-		this.load.bitmapFont('caslon', 'fonts/caslon.png', 'fonts/caslon.xml');
+		this.load.image('titlepage', imgdir+'title.jpg');
+		this.load.atlasJSONHash('playButton', imgdir+'play_button.png', imgdir+'play_button.json');
+		this.load.audio('titleMusic', [snddir+'main_menu.mp3']);
 		//	+ lots of other required assets here
+
+		//ship and explosion
+		this.game.load.image('ship', imgdir+'chapel-fighter.png');
+		this.game.load.spritesheet('died', imgdir+'explode.png', 128, 128);
+		
+		//background images
+		this.game.load.image('planetbg', imgdir+'planet.jpg');
+		this.game.load.image('stars1', imgdir+'stars1.png');
+		this.game.load.image('stars2', imgdir+'stars2.png');
 
 	},
 
